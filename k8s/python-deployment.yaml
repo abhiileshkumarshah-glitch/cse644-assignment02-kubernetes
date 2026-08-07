@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-web
+  namespace: cse644
+  labels:
+    app: python-web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: python-web
+  template:
+    metadata:
+      labels:
+        app: python-web
+    spec:
+      containers:
+        - name: python-web
+          image: shah990/python-web:1.1
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8888
+          env:
+            - name: GREETING
+              valueFrom:
+                configMapKeyRef:
+                  name: python-config
+                  key: GREETING
+            - name: APP_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: python-secret
+                  key: APP_SECRET
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8888
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8888
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          volumeMounts:
+            - name: python-data
+              mountPath: /data
+      volumes:
+        - name: python-data
+          persistentVolumeClaim:
+            claimName: python-data

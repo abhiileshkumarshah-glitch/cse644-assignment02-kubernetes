@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: python-web
+  namespace: cse644
+  labels:
+    app: python-web
+spec:
+  type: ClusterIP
+  selector:
+    app: python-web
+  ports:
+    - name: http
+      port: 8888
+      targetPort: 8888

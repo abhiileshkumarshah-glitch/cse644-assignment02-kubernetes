@@ -1,0 +1,40 @@
+# Kubernetes credentials and local configuration
+.kube/
+kubeconfig
+*.kubeconfig
+config
+
+# Secrets and credentials
+.env
+.env.*
+*.secret
+*.key
+*.pem
+credentials*
+password*
+secret*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Docker
+.docker/
+
+# IDE / editor
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
