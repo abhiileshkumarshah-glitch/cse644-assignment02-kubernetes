@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cse644-python-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cse644-python-app
+  template:
+    metadata:
+      labels:
+        app: cse644-python-app
+    spec:
+      containers:
+        - name: python-app
+          image: cse644-python-app:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8888
