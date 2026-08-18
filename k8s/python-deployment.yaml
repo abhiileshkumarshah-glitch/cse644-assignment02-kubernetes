@@ -18,7 +18,7 @@ spec:
       containers:
         - name: python-web
           image: shah990/python-web:1.1
-         imagePullPolicy: IfNotPresentr
+         imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8888
           env:

@@ -18,7 +18,7 @@ spec:
       containers:
         - name: nginx
           image: shah990/custom-nginx:1.0
-          imagePullPolicy:IfNotPresent
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
           readinessProbe:
